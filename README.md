@@ -26,6 +26,10 @@ Luego podrá revisar la sección **Facturas** para ver deudas y registrar pagos.
 
 Cada factura ahora incluye un desglose por entrenador en la tabla `facturas_coach`, permitiendo separar lo que corresponde pagar al club y a cada coach.
 
+Además se añadió una pequeña interfaz para que el departamento de entrenadores consulte las deudas por coach desde `Deudas Coaches` en el menú principal.
+
+
+
 ### Uso de la sección "Facturas"
 1. Ingrese al menú **Facturas** en la barra de navegación.
 2. Desde ahí podrá filtrar por apoderado, mes o estado, consultar el detalle y registrar pagos parciales o totales.
