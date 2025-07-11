@@ -22,5 +22,6 @@ class FacturaCoach extends Model {
         $stmt->execute([$coach_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 }
 ?>
