@@ -17,17 +17,6 @@ Este proyecto es una implementación sencilla de un sistema de gestión para un 
 4. Copie todos los archivos en el directorio público de Apache (por ejemplo `htdocs`).
 5. Acceda a `http://localhost/public/index.php` en su navegador para usar la aplicación.
 
-### Generar facturas
-Para generar las mensualidades del mes en curso visite:
-```
-http://localhost/public/index.php?controller=facturas&action=generar
-```
-Luego podrá revisar la sección **Facturas** para ver deudas y registrar pagos.
-
-### Uso de la sección "Facturas"
-1. Ingrese al menú **Facturas** en la barra de navegación.
-2. Desde ahí podrá filtrar por apoderado, mes o estado, consultar el detalle y registrar pagos parciales o totales.
-
 ## Estructura de carpetas
 - `config/` – configuración de base de datos.
 - `models/` – modelos con funciones CRUD.
