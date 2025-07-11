@@ -3,6 +3,7 @@ require_once __DIR__ . '/../controllers/ApoderadoController.php';
 require_once __DIR__ . '/../controllers/DeportistaController.php';
 require_once __DIR__ . '/../controllers/ClaseController.php';
 require_once __DIR__ . '/../controllers/PagoController.php';
+require_once __DIR__ . '/../controllers/FacturaController.php';
 
 $controller = $_GET['controller'] ?? 'apoderados';
 $action = $_GET['action'] ?? 'index';
@@ -19,6 +20,9 @@ switch ($controller) {
         break;
     case 'pagos':
         $ctrl = new PagoController();
+        break;
+    case 'facturas':
+        $ctrl = new FacturaController();
         break;
     default:
         $ctrl = new ApoderadoController();
