@@ -1,0 +1,50 @@
+-- Esquema de base de datos para club de patinaje
+CREATE TABLE apoderados (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefono VARCHAR(20),
+    cuota_social DECIMAL(10,2) DEFAULT 3000.00
+);
+
+CREATE TABLE deportistas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    apoderado_id INT NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    edad INT,
+    FOREIGN KEY (apoderado_id) REFERENCES apoderados(id) ON DELETE CASCADE
+);
+
+CREATE TABLE coaches (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE modalidades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    coach_id INT NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    tarifa DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (coach_id) REFERENCES coaches(id) ON DELETE CASCADE
+);
+
+-- inscripciones de deportistas a modalidades
+CREATE TABLE inscripciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    deportista_id INT NOT NULL,
+    modalidad_id INT NOT NULL,
+    FOREIGN KEY (deportista_id) REFERENCES deportistas(id) ON DELETE CASCADE,
+    FOREIGN KEY (modalidad_id) REFERENCES modalidades(id) ON DELETE CASCADE
+);
+
+CREATE TABLE pagos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    apoderado_id INT NOT NULL,
+    tipo ENUM('cuota_social','clases') NOT NULL,
+    monto DECIMAL(10,2) NOT NULL,
+    fecha DATE NOT NULL,
+    FOREIGN KEY (apoderado_id) REFERENCES apoderados(id) ON DELETE CASCADE
+);
+
+-- insertar coaches iniciales
+INSERT INTO coaches (nombre) VALUES ('Freeskating'), ('Danza & Flex');
