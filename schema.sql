@@ -46,21 +46,5 @@ CREATE TABLE pagos (
     FOREIGN KEY (apoderado_id) REFERENCES apoderados(id) ON DELETE CASCADE
 );
 
-CREATE TABLE facturas (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  apoderado_id INT NOT NULL,
-  mes TINYINT NOT NULL,
-  año YEAR NOT NULL,
-  monto_social DECIMAL(10,2) NOT NULL,
-  monto_clases DECIMAL(10,2) NOT NULL,
-  monto_total DECIMAL(10,2) AS (monto_social + monto_clases) STORED,
-  monto_pagado DECIMAL(10,2) NOT NULL DEFAULT 0,
-  saldo DECIMAL(10,2) AS (monto_total - monto_pagado) STORED,
-  estado ENUM('pendiente','parcial','pagada') NOT NULL DEFAULT 'pendiente',
-  fecha_generacion DATE NOT NULL,
-  UNIQUE KEY(apoderado_id, mes, año),
-  FOREIGN KEY (apoderado_id) REFERENCES apoderados(id)
-);
-
 -- insertar coaches iniciales
 INSERT INTO coaches (nombre) VALUES ('Freeskating'), ('Danza & Flex');
