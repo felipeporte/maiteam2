@@ -7,6 +7,17 @@
 <tr><th>Saldo</th><td><?= $factura['saldo'] ?></td></tr>
 <tr><th>Estado</th><td><?= $factura['estado'] ?></td></tr>
 </table>
+
+<h4>Detalle por Entrenador</h4>
+<table class="table table-bordered">
+<tr><th>Entrenador</th><th>Monto Clases</th></tr>
+<?php foreach($detalle as $d): ?>
+<tr>
+  <td><?= $d['coach'] ?></td>
+  <td><?= $d['monto_clases'] ?></td>
+</tr>
+<?php endforeach; ?>
+</table>
 <h4>Registrar Pago</h4>
 <form method="post" action="./?controller=facturas&action=registrarPago">
   <input type="hidden" name="factura_id" value="<?= $factura['id'] ?>">

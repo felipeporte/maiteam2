@@ -2,6 +2,7 @@
 require_once 'Controller.php';
 require_once __DIR__.'/../models/Factura.php';
 require_once __DIR__.'/../models/Apoderado.php';
+require_once __DIR__.'/../models/FacturaCoach.php';
 
 class FacturaController extends Controller {
     public function index() {
@@ -27,8 +28,10 @@ class FacturaController extends Controller {
 
     public function show() {
         $model = new Factura();
+        $fcModel = new FacturaCoach();
         $factura = $model->find($_GET['id']);
-        $this->render('facturas/show', ['factura'=>$factura]);
+        $detalle = $fcModel->porFactura($_GET['id']);
+        $this->render('facturas/show', ['factura'=>$factura,'detalle'=>$detalle]);
     }
 
     public function registrarPago() {
