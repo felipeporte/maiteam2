@@ -21,7 +21,7 @@ class PagoController extends Controller {
                 'monto' => $_POST['monto'],
                 'fecha' => $_POST['fecha']
             ]);
-            header('Location: /?controller=pagos');
+            header('Location: ./?controller=pagos');
             exit;
         }
         $this->render('pagos/create', ['apoderados' => $apoderados]);
@@ -30,7 +30,7 @@ class PagoController extends Controller {
     public function delete() {
         $model = new Pago();
         $model->delete($_GET['id']);
-        header('Location: /?controller=pagos');
+        header('Location: ./?controller=pagos');
     }
 }
 ?>

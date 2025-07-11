@@ -22,7 +22,7 @@ class DeportistaController extends Controller {
                 'nombre' => $_POST['nombre'],
                 'edad' => $_POST['edad']
             ]);
-            header('Location: /?controller=deportistas');
+            header('Location: ./?controller=deportistas');
             exit;
         }
         $this->render('deportistas/create', ['apoderados' => $apoderados]);
@@ -39,7 +39,7 @@ class DeportistaController extends Controller {
                 'nombre' => $_POST['nombre'],
                 'edad' => $_POST['edad']
             ]);
-            header('Location: /?controller=deportistas');
+            header('Location: ./?controller=deportistas');
             exit;
         }
         $this->render('deportistas/edit', ['deportista' => $deportista, 'apoderados' => $apoderados]);
@@ -48,7 +48,7 @@ class DeportistaController extends Controller {
     public function delete() {
         $model = new Deportista();
         $model->delete($_GET['id']);
-        header('Location: /?controller=deportistas');
+        header('Location: ./?controller=deportistas');
     }
 }
 ?>

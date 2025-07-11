@@ -22,7 +22,7 @@ class ClaseController extends Controller {
                 'deportista_id' => $_POST['deportista_id'],
                 'modalidad_id' => $_POST['modalidad_id']
             ]);
-            header('Location: /?controller=clases');
+            header('Location: ./?controller=clases');
             exit;
         }
         $this->render('clases/create', ['deportistas' => $deportistas, 'modalidades' => $modalidades]);
@@ -31,7 +31,7 @@ class ClaseController extends Controller {
     public function delete() {
         $model = new Inscripcion();
         $model->delete($_GET['id']);
-        header('Location: /?controller=clases');
+        header('Location: ./?controller=clases');
     }
 }
 ?>

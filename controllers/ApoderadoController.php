@@ -18,7 +18,7 @@ class ApoderadoController extends Controller {
                 'email' => $_POST['email'],
                 'telefono' => $_POST['telefono']
             ]);
-            header('Location: /?controller=apoderados');
+            header('Location: ./?controller=apoderados');
             exit;
         }
         $this->render('apoderados/create');
@@ -33,7 +33,7 @@ class ApoderadoController extends Controller {
                 'email' => $_POST['email'],
                 'telefono' => $_POST['telefono']
             ]);
-            header('Location: /?controller=apoderados');
+            header('Location: ./?controller=apoderados');
             exit;
         }
         $this->render('apoderados/edit', ['apoderado' => $apoderado]);
@@ -42,7 +42,7 @@ class ApoderadoController extends Controller {
     public function delete() {
         $model = new Apoderado();
         $model->delete($_GET['id']);
-        header('Location: /?controller=apoderados');
+        header('Location: ./?controller=apoderados');
     }
 }
 ?>
