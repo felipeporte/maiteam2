@@ -33,6 +33,25 @@ class Factura extends Model {
             if ($stmt->fetch()) { continue; }
             $stmt = $this->db->prepare("INSERT INTO facturas (apoderado_id, mes, año, monto_social, monto_clases, fecha_generacion) VALUES (?,?,?,?,?,?)");
             $stmt->execute([$row['apoderado_id'], $mes, $año, 3000, $row['monto_clases'], $fecha]);
+            $factura_id = $this->db->lastInsertId();
+
+            // detalle por coach
+            $detSql = "SELECT m.coach_id, SUM(m.tarifa) monto FROM deportistas d JOIN inscripciones i ON i.deportista_id=d.id JOIN modalidades m ON m.id=i.modalidad_id WHERE d.apoderado_id=? GROUP BY m.coach_id";
+            $detStmt = $this->db->prepare($detSql);
+            $detStmt->execute([$row['apoderado_id']]);
+            foreach ($detStmt->fetchAll(PDO::FETCH_ASSOC) as $det) {
+                $stmtDet = $this->db->prepare("INSERT INTO facturas_coach (factura_id, coach_id, monto_clases) VALUES (?,?,?)");
+                $stmtDet->execute([$factura_id, $det['coach_id'], $det['monto']]);
+            }
+
+            // detalle por deportista y coach
+            $depSql = "SELECT d.id deportista_id, m.coach_id, SUM(m.tarifa) monto FROM deportistas d JOIN inscripciones i ON i.deportista_id=d.id JOIN modalidades m ON m.id=i.modalidad_id WHERE d.apoderado_id=? GROUP BY d.id, m.coach_id";
+            $depStmt = $this->db->prepare($depSql);
+            $depStmt->execute([$row['apoderado_id']]);
+            foreach ($depStmt->fetchAll(PDO::FETCH_ASSOC) as $detD) {
+                $stmtDetD = $this->db->prepare("INSERT INTO facturas_deportista (factura_id, deportista_id, coach_id, monto_clases) VALUES (?,?,?,?)");
+                $stmtDetD->execute([$factura_id, $detD['deportista_id'], $detD['coach_id'], $detD['monto']]);
+            }
         }
     }
 
