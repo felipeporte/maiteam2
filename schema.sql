@@ -62,5 +62,27 @@ CREATE TABLE facturas (
   FOREIGN KEY (apoderado_id) REFERENCES apoderados(id)
 );
 
+-- detalle de cada factura por coach
+CREATE TABLE facturas_coach (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  factura_id INT NOT NULL,
+  coach_id INT NOT NULL,
+  monto_clases DECIMAL(10,2) NOT NULL,
+  FOREIGN KEY (factura_id) REFERENCES facturas(id) ON DELETE CASCADE,
+  FOREIGN KEY (coach_id) REFERENCES coaches(id) ON DELETE CASCADE
+);
+
+-- detalle de cada factura por deportista y coach
+CREATE TABLE facturas_deportista (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  factura_id INT NOT NULL,
+  deportista_id INT NOT NULL,
+  coach_id INT NOT NULL,
+  monto_clases DECIMAL(10,2) NOT NULL,
+  FOREIGN KEY (factura_id) REFERENCES facturas(id) ON DELETE CASCADE,
+  FOREIGN KEY (deportista_id) REFERENCES deportistas(id) ON DELETE CASCADE,
+  FOREIGN KEY (coach_id) REFERENCES coaches(id) ON DELETE CASCADE
+);
+
 -- insertar coaches iniciales
 INSERT INTO coaches (nombre) VALUES ('Freeskating'), ('Danza & Flex');

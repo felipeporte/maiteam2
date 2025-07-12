@@ -16,6 +16,8 @@
       <li class="nav-item"><a class="nav-link" href="./?controller=clases">Inscripciones</a></li>
       <li class="nav-item"><a class="nav-link" href="./?controller=pagos">Pagos</a></li>
       <li class="nav-item"><a class="nav-link" href="./?controller=facturas">Facturas</a></li>
+      <li class="nav-item"><a class="nav-link" href="./?controller=coachfacturas">Deudas Coaches</a></li>
+      <li class="nav-item"><a class="nav-link" href="./?controller=deportistafacturas">Deudas Deportistas</a></li>
     </ul>
   </div>
 </nav>
